@@ -3,10 +3,8 @@ import React, { useEffect, useState, useMemo } from 'react'
 import * as MDX from '@mdx-js/react'
 import { MDXRemoteSerializeResult } from './types'
 
-// requestIdleCallback types found here: https://github.com/microsoft/TypeScript/issues/21309
-type RequestIdleCallbackHandle = any
 type RequestIdleCallbackOptions = {
-  timeout: number
+  timeout?: number
 }
 type RequestIdleCallbackDeadline = {
   readonly didTimeout: boolean
@@ -18,8 +16,8 @@ declare global {
     requestIdleCallback: (
       callback: (deadline: RequestIdleCallbackDeadline) => void,
       opts?: RequestIdleCallbackOptions
-    ) => RequestIdleCallbackHandle
-    cancelIdleCallback: (handle: RequestIdleCallbackHandle) => void
+    ) => number
+    cancelIdleCallback: (handle: number) => void
   }
 }
 
